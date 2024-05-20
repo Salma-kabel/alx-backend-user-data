@@ -12,7 +12,7 @@ class Auth:
     """class to manage api auth"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """returns none-path and excluded_paths"""
-        if path is None:
+        if path is None or excluded_paths is None or len(excluded_paths) == 0:
             return True
         if path in excluded_paths or (path + '/') in excluded_paths:
             return False
