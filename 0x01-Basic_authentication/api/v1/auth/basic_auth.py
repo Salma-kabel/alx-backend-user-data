@@ -2,11 +2,11 @@
 """class basic auth that inherits from auth"""
 
 
-from flask import request
-from tabnanny import check
-from flask import request
-from typing import TypeVar, List
 from api.v1.auth.auth import Auth
+from typing import TypeVar, List
+from models.user import User
+import base64
+import binascii
 
 
 class BasicAuth(Auth):
@@ -28,6 +28,7 @@ class BasicAuth(Auth):
                 type(base64_authorization_header) is not str):
             return None
         try:
-            return base64.b64decode(base64_authorization_header).decode('utf-8')
+            return base64.b64decode(base64_authorization_header).decode('utf-8')           
+        
         except Exception:
             return None    
