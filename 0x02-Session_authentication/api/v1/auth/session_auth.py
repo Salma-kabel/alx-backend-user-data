@@ -26,4 +26,4 @@ class SessionAuth(Auth):
         """returns a User ID based on a Session ID"""
         if session_id is None or not isinstance(session_id, str):
             return None
-        return user_id_by_session_id.get(session_id)
+        return self.user_id_by_session_id.get(session_id)
