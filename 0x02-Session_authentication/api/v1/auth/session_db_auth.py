@@ -2,8 +2,8 @@
 """new authentication class SessionDBAuth"""
 
 
-from api.v1.auth.session_auth import SessionExpAuth
-from models/user_session import UserSession
+from api.v1.auth.session_exp_auth import SessionExpAuth
+from models.user_session import UserSession
 from flask import request
 
 
