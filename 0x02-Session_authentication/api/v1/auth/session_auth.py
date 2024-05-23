@@ -17,7 +17,7 @@ class SessionAuth(Auth):
         if user_id is None or type(user_id) is not str:
             return None
         else:
-            session_id = kwargs.get('id', str(uuid.uuid4()))
+            session_id = str(uuid.uuid4())
             user_id_by_session_id[session_id] = user_id
             return session_id
 
