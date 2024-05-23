@@ -15,7 +15,6 @@ DATA = {}
 class Base():
     """ Base class
     """
-
     def __init__(self, *args: list, **kwargs: dict):
         """ Initialize a Base instance
         """
@@ -84,6 +83,7 @@ class Base():
 
         with open(file_path, 'w') as f:
             json.dump(objs_json, f)
+        print("saved")
 
     def save(self):
         """ Save current object
@@ -92,6 +92,7 @@ class Base():
         self.updated_at = datetime.utcnow()
         DATA[s_class][self.id] = self
         self.__class__.save_to_file()
+        print("done")
 
     def remove(self):
         """ Remove object

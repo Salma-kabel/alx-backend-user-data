@@ -14,5 +14,5 @@ class UserSession(Base):
     def __init__(self, *args: list, **kwargs: dict):
         """store session and id for users"""
         super().__init__(*args, **kwargs)
-        user_id = kwargs.get('user_id')
-        session_id = kwargs.get('session_id')
+        self.user_id = kwargs.get('user_id')
+        self.session_id = kwargs.get('session_id')
