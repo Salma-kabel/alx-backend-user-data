@@ -28,11 +28,12 @@ class SessionExpAuth(SessionAuth):
         """Return None if session_id is None"""
         if session_id is None:
             return None
-        if self.user_id_by_session_id.get(session_id):
+        session_dictionary = self.user_id_by_session_id.get(session_id)
+        if session_dictionary:
             user_id = session_dictionary.get('user_id')
             if self.session_duration <= 0:
                 return user_id
-            created = self.session_dictionary.get('created_at')
+            created = session_dictionary.get('created_at')
             if created:
                 if created + timedelta(seconds=self.session_duration) < datetime.now():
                     return None
