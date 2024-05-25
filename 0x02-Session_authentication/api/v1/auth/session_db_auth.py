@@ -7,6 +7,7 @@ from models.user_session import UserSession
 from flask import request
 from models.base import Base
 
+
 class SessionDBAuth(SessionExpAuth):
     """class inherits from SessionExpAuth"""
     user_id_by_session_id = {}
@@ -14,6 +15,8 @@ class SessionDBAuth(SessionExpAuth):
     def create_session(self, user_id=None):
         """creates and stores new instance of
         UserSession and returns the Session ID"""
+        if user_id is None:
+            return None
         session = UserSession(user_id=user_id)
         session.save()
         self.user_id_by_session_id[session.id] = user_id
