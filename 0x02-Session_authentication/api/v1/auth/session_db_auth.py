@@ -35,22 +35,24 @@ class SessionDBAuth(SessionExpAuth):
             return None
         if not sessions:
             return None
+        if datetime.now() > session.created_at + \
+        timedelta(seconds=self.session_duration):
+            self.destroy_session(session_id)
+            return None
         session = sessions[0]
         return session.user_id
 
-    def destroy_session(self, request=None):
+    def destroy_session(self, arg=None):
         """destroys the UserSession based on the
         Session ID from the request cookie"""
-        if request is None:
-            return False
-        session_id = self.session_cookie(request)
-        if session_id:
-            user_id = self.user_id_for_session_id(session_id)
-            if user_id:
-                user_session = UserSession.get(session_id)
-                if user_session:
-                    if datetime.now() > user_session.created_at + \
-                    timedelta(seconds=self.session_duration):
-                        user_session.remove()
-                return True
+        session_id = None
+        if isinstance(arg, str):
+            session_id = arg
+        elif arg:
+            session_id = self.session_cookie(request)
+            if session_id:
+                user_id = self.user_id_for_session_id(session_id)
+                if user_id:
+                    del self.user_id_by_session_id[session_id]
+                    return True
         return False
