@@ -6,6 +6,7 @@ from api.v1.auth.session_exp_auth import SessionExpAuth
 from models.user_session import UserSession
 from flask import request
 from models.base import Base
+from datetime import datetime, timedelta
 
 
 class SessionDBAuth(SessionExpAuth):
@@ -48,7 +49,7 @@ class SessionDBAuth(SessionExpAuth):
             if user_id:
                 user_session = UserSession.get(session_id)
                 if user_session:
-                    if datetime.now() > user_session.created_at +
+                    if datetime.now() > user_session.created_at + \
                     timedelta(seconds=self.session_duration):
                         user_session.remove()
                 return True
