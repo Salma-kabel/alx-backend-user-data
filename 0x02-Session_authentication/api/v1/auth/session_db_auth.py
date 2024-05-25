@@ -27,7 +27,6 @@ class SessionDBAuth(SessionExpAuth):
         UserSession in the database based on session_id"""
         if session_id is None:
             return None
-        UserSession.load_from_file()
         try:
             sessions = UserSession.search({'session_id': session_id})
         except Exception:
