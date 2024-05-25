@@ -26,7 +26,6 @@ class SessionDBAuth(SessionExpAuth):
     def user_id_for_session_id(self, session_id=None):
         """ returns the User ID by requesting
         UserSession in the database based on session_id"""
-        
         if session_id is None:
             return None
         try:
