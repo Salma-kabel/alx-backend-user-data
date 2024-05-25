@@ -44,7 +44,7 @@ class SessionDBAuth(SessionExpAuth):
             return False
         session_id = self.session_cookie(request)
         if session_id:
-            user_id = self.user_id_for_session_id(session_id)
+            user_id = super().user_id_for_session_id(session_id)
             if user_id:
                 UserSession(user_id=user_id, session_id=session_id).remove()
                 return True
