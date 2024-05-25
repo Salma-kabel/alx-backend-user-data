@@ -18,8 +18,9 @@ class SessionDBAuth(SessionExpAuth):
         if user_id is None:
             return None
         session = UserSession(user_id=user_id)
+        session.session_id = session.id
         session.save()
-        return session.id
+        return session.session_id
 
     def user_id_for_session_id(self, session_id=None):
         """ returns the User ID by requesting
