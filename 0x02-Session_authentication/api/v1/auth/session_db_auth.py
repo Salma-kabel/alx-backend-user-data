@@ -45,12 +45,8 @@ class SessionDBAuth(SessionExpAuth):
             return False
         session_id = self.session_cookie(request)
         if session_id:
-            user_id = self.user_id_for_session_id(session_id)
-            if user_id:
-                user_session = UserSession.get(session_id)
-                if user_session:
-                    if datetime.now() > user_session.created_at + \
-                    timedelta(seconds=self.session_duration):
-                        user_session.remove()
-                        return True
+            session = UserSession.get(session_id)
+            if session:
+                session.remove()
+                return True
         return False
