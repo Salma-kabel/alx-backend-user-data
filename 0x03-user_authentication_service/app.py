@@ -25,7 +25,6 @@ def users() -> str:
         return jsonify({"email": f"email", "message": "user created"}), 200
     except Exception:
         return jsonify({"message": "email already registered"}), 400
-    
 
 
 if __name__ == "__main__":
