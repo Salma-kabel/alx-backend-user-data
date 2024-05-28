@@ -57,10 +57,10 @@ class DB:
     def update_user(self, user_id:int, **kwargs) -> None:
         """will use find_user_by to locate the user to update, then will
         update the user’s attributes as passed in the method’s arguments"""
-        try:
-            user = self.find_user_by(id=user_id)
-            for attribute, value in kwargs.items():
+        user = self.find_user_by(id=user_id)
+        for attribute, value in kwargs.items():
+            if hasattr(user, attribute):
                 setattr(user, attribute, value)
-            self._session.commit()
-        except InvalidRequestError:
-            raise ValueError
+            else:
+                raise ValueError
+        self._session.commit()
