@@ -17,6 +17,6 @@ class User(Base):
     session_id = Column(String(250), nullable=False)
     reset_token = Column(String(250), nullable=False)
 
-   def __repr__(self):
+    def __repr__(self):
         """String representation"""
         return f"User: id={self.id}"
