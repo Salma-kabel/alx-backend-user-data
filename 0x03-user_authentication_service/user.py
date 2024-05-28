@@ -19,4 +19,4 @@ class User(Base):
 
     def __repr__(self):
         """String representation"""
-        return f"User: id={self.id}"
+        return "User: id=" + str(self.id)
