@@ -54,7 +54,8 @@ class DB:
             raise NoResultFound
         except InvalidRequestError:
             raise InvalidRequestError
-    def update_user(self, user_id:int, **kwargs) -> None:
+
+    def update_user(self, user_id: int, **kwargs) -> None:
         """will use find_user_by to locate the user to update, then will
         update the user’s attributes as passed in the method’s arguments"""
         user = self.find_user_by(id=user_id)
