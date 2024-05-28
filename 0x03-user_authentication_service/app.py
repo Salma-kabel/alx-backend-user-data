@@ -6,6 +6,9 @@ from auth import Auth
 from flask import Flask, jsonify, request, abort, redirect
 
 
+app = Flask(__name__)
+
+
 @app.route("/", methods=["GET"], strict_slashes=False)
 def index() -> str:
     return jsonify({"message": "Bienvenue"}), 200
