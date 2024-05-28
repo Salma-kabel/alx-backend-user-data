@@ -62,5 +62,5 @@ class DB:
             for attribute, value in kwargs.items():
                 setattr(user, attribute, value)
             self._session.commit()
-        except Exception:
+        except InvalidRequestError:
             raise ValueError
