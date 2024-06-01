@@ -42,7 +42,7 @@ def login() -> str:
         abort(401)
 
 
-@app.route("/sessions", strict_slashes=False)
+@app.route("/sessions", methods=['DELETE'], strict_slashes=False)
 def logout() -> str:
     """ destroy the session and redirect the user to GET /.
     If the user does not exist, respond with a 403"""
