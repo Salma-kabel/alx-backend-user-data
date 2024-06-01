@@ -89,10 +89,13 @@ def update_password() -> str:
     reset_token = request.form.get('reset_token')
     new_psw = request.form.get('new_password')
     try:
+        """If the token is valid, respond with a 200 HTTP code"""
         AUTH.update_password(reset_token, new_psw)
         return jsonify({"email": f"{email}",
                         "message": "Password updated"}), 200
-    except NoResultFound:
+    except Exception:
+        """ If the token is invalid, catch the exception
+        and respond with a 403 HTTP code"""
         abort(403)
 
 
