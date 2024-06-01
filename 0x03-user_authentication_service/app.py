@@ -28,9 +28,9 @@ def users() -> str:
 
 
 @app.route("/sessions", methods=["POST"], strict_slashes=False)
-    """ implement a login function to respond
-    to the POST /sessions route"""
 def login() -> str:
+    """implement a login function to respond
+    to the POST /sessions route"""
     email = request.form.get("email")
     password = request.form.get("password")
     if AUTH.valid_login(email, password):
