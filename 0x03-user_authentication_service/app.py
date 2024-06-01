@@ -72,7 +72,7 @@ def get_reset_password_token() -> str:
     """If the email is not registered, respond with a 403 status code
     Otherwise, generate a token and respond with a 200 HTTP status"""
     email = request.form.get('email')
-    sessiopn_id = AUTH.create_session(email)
+    session_id = AUTH.create_session(email)
     if session_id:
         return jsonify({"email": email, "reset_token": session_id}), 200
     else:
