@@ -74,7 +74,7 @@ class Auth:
         self._db.update_user(user_id, session_id=None)
         return None
 
-    def get_reset_password_token(self, email:str) -> str:
+    def get_reset_password_token(self, email: str) -> str:
         """ If the user does not exist, raise a ValueError exception.
         If it exists, generate a UUID and update the user’s reset_token"""
         try:
